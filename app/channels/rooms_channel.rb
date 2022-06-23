@@ -5,6 +5,7 @@ class RoomsChannel < ApplicationCable::Channel
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
-    raise NotImplementedError
+    # byebug
+    # raise NotImplementedError
   end
 end

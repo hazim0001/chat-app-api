@@ -5,12 +5,14 @@ class RoomsController < ApplicationController
   end
 
   def create
-    room = if Room.find_by(name: params[:name]).nil?
-             Room.create(room_params)
-           else
-             Room.find_by(name: params[:name])
-           end
+    room = Room.new(room_params)
+    room.save
+    head :ok
+  end
 
-    ActionCable.server.broadcast 'rooms_channel', room
+  private
+
+  def room_params
+    params.permit(:name)
   end
 end
